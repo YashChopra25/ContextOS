@@ -14,7 +14,8 @@
     "db:seed": "tsx --env-file-if-exists=.env.local --conditions=react-server scripts/seed.ts",
     "db:setup": "npm run db:up && npm run db:migrate && npm run db:seed",
     "context:sync": "tsx --env-file-if-exists=.env.local --conditions=react-server scripts/sync-context.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "db:studio": "node --env-file-if-exists=.env.local ./node_modules/drizzle-kit/bin.cjs studio --host 127.0.0.1 --port 4983"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",

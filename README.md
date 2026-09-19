@@ -76,6 +76,7 @@ Typical effect: a repeated agent question drops from ~6 s to ~20 ms; the 650-per
 | `npm run db:up` / `db:down` | Start or stop Postgres |
 | `npm run db:migrate` | Apply Drizzle migrations in `drizzle/` |
 | `npm run db:generate` | Generate a migration after editing `src/server/db/schema.ts` |
+| `npm run db:studio` | Browse and edit the data in Drizzle Studio (https://local.drizzle.studio, bound to localhost) |
 | `npm run db:seed` | Reset and seed from the CSV |
 | `npm run context:sync -- --limit N` / `--slug <slug>` / `--all` | Build context profiles from GitHub (add `--web` to also research with Tavily) |
 | `npm run typecheck`, `npm run lint` | Checks |
