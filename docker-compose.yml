@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: contextos-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: contextos
+      POSTGRES_PASSWORD: contextos
+      POSTGRES_DB: contextos
+    ports:
+      # 5433 on the host so it doesn't collide with other local Postgres instances.
+      - "5433:5432"
+    volumes:
+      - contextos-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U contextos -d contextos"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: contextos-redis
+    restart: unless-stopped
+    # A cache, not a database: cap memory and evict least-recently-used keys; no persistence needed.
+    command: ["redis-server", "--maxmemory", "256mb", "--maxmemory-policy", "allkeys-lru", "--save", "", "--appendonly", "no"]
+    ports:
+      # 6380 on the host so it doesn't collide with other local Redis instances.
+      - "6380:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  contextos-pgdata:

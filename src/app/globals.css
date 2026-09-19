@@ -1,26 +1,191 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, monospace;
+  --font-heading: var(--font-sans);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* ContextOS: the one accent, reserved for Context Layer elements. */
+  --color-signal: var(--signal);
+  --color-signal-soft: var(--signal-soft);
+  --color-signal-foreground: var(--signal-foreground);
+
+  /* Source colours: every piece of evidence is traceable to where it came from. */
+  --color-src-platform: var(--src-platform);
+  --color-src-github: var(--src-github);
+  --color-src-linkedin: var(--src-linkedin);
+  --color-src-portfolio: var(--src-portfolio);
+  --color-src-web: var(--src-web);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.5rem;
+
+  --background: #f6f7f9;
+  --foreground: #15171c;
+  --card: #ffffff;
+  --card-foreground: #15171c;
+  --popover: #ffffff;
+  --popover-foreground: #15171c;
+  --primary: #15171c;
+  --primary-foreground: #f6f7f9;
+  --secondary: #eceef2;
+  --secondary-foreground: #15171c;
+  --muted: #eef0f3;
+  --muted-foreground: #5f6570;
+  --accent: #eceef2;
+  --accent-foreground: #15171c;
+  --destructive: #c4321f;
+  --border: #e2e5ea;
+  --input: #d9dde3;
+  --ring: #0f7b6c;
+
+  --signal: #0f7b6c;
+  --signal-soft: #e3f3f0;
+  --signal-foreground: #0b5e53;
+
+  --src-platform: #0f7b6c;
+  --src-github: #2b2f36;
+  --src-linkedin: #2f6fd6;
+  --src-portfolio: #7a5ad1;
+  --src-web: #a86500;
+
+  /* Validated with the dataviz palette checker (lightness band, chroma, contrast). */
+  --chart-1: #00846f;
+  --chart-2: #2f6fd6;
+  --chart-3: #7a5ad1;
+  --chart-4: #a86500;
+  --chart-5: #5f6570;
+
+  --sidebar: #fbfbfc;
+  --sidebar-foreground: #15171c;
+  --sidebar-primary: #15171c;
+  --sidebar-primary-foreground: #f6f7f9;
+  --sidebar-accent: #eceef2;
+  --sidebar-accent-foreground: #15171c;
+  --sidebar-border: #e2e5ea;
+  --sidebar-ring: #0f7b6c;
+}
+
+.dark {
+  --background: #0d0f12;
+  --foreground: #e6e8eb;
+  --card: #14171b;
+  --card-foreground: #e6e8eb;
+  --popover: #171a1f;
+  --popover-foreground: #e6e8eb;
+  --primary: #e6e8eb;
+  --primary-foreground: #0d0f12;
+  --secondary: #1d2126;
+  --secondary-foreground: #e6e8eb;
+  --muted: #1b1e23;
+  --muted-foreground: #8d949f;
+  --accent: #1f2329;
+  --accent-foreground: #e6e8eb;
+  --destructive: #f07061;
+  --border: #252930;
+  --input: #2d323a;
+  --ring: #3fc1ab;
+
+  --signal: #3fc1ab;
+  --signal-soft: #11302b;
+  --signal-foreground: #7fdcca;
+
+  --src-platform: #3fc1ab;
+  --src-github: #c9ced6;
+  --src-linkedin: #6c9bef;
+  --src-portfolio: #a48bf0;
+  --src-web: #e0a33b;
+
+  --chart-1: #22a28e;
+  --chart-2: #6c9bef;
+  --chart-3: #a48bf0;
+  --chart-4: #e0a33b;
+  --chart-5: #8d949f;
+
+  --sidebar: #101216;
+  --sidebar-foreground: #e6e8eb;
+  --sidebar-primary: #e6e8eb;
+  --sidebar-primary-foreground: #0d0f12;
+  --sidebar-accent: #1b1e23;
+  --sidebar-accent-foreground: #e6e8eb;
+  --sidebar-border: #22262c;
+  --sidebar-ring: #3fc1ab;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    font-feature-settings: "ss01", "tnum";
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  /* The flowing dash on the Data → Context → Intelligence connectors. */
+  @keyframes context-flow {
+    to {
+      stroke-dashoffset: -16;
+    }
+  }
+  .animate-context-flow {
+    animation: context-flow 1.2s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .animate-context-flow {
+      animation: none;
+    }
+  }
 }
